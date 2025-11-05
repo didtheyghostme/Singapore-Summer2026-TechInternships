@@ -1,11 +1,11 @@
-# 🇸🇬 Singapore Summer 2025 Tech Internships
+# Singapore Summer 2026 Tech Internships
 
-[![Live Site](https://img.shields.io/badge/Live_Site-didtheyghost.me/jobs-blue?logo=vercel&style=flat-square)](https://didtheyghost.me/jobs?utm_source=githubSGSummer2025&utm_medium=badge&utm_campaign=sg-internships-2025)
+[![Live Site](https://img.shields.io/badge/Live_Site-didtheyghost.me/jobs-blue?logo=vercel&style=flat-square)](https://didtheyghost.me/jobs?utm_source=githubSGSummer2026&utm_medium=badge&utm_campaign=sg-internships-2026)
 
-Looking for a tech internship in Singapore for **Summer 2025**?  
+Looking for a tech internship in Singapore for **Summer 2026**?  
 Skip outdated GitHub lists and basic job boards. We built a **real-time, community-powered platform** that does way more.
 
-🌐 **Check it out here** →  🔗 [didtheyghost.me/jobs](https://didtheyghost.me/jobs?utm_source=githubSGSummer2025&utm_medium=readme&utm_campaign=sg-internships-2025)
+🌐 **Check it out here** →  🔗 [didtheyghost.me/jobs](https://didtheyghost.me/jobs?utm_source=githubSGSummer2026&utm_medium=readme&utm_campaign=sg-internships-2026)
 
 ---
 
@@ -56,7 +56,7 @@ We're open-source and community-powered — and we welcome all kinds of contribu
 - Help verify company or job posting data
 - Contribute to design, dev, or data improvements  
 
-Have questions or ideas? Reach out via [contact](https://didtheyghost.me/contact?utm_source=githubSGSummer2025&utm_medium=contact&utm_campaign=sg-internships-2025)
+Have questions or ideas? Reach out via [contact](https://didtheyghost.me/contact?utm_source=githubSGSummer2026&utm_medium=contact&utm_campaign=sg-internships-2026)
 
 ---
 
@@ -67,4 +67,4 @@ Have questions or ideas? Reach out via [contact](https://didtheyghost.me/contact
 ---
 
 Let’s beat the ghosting together.  
-Good luck for Summer 2025! ☀️💼
+Good luck for Summer 2026! ☀️💼
