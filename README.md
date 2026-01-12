@@ -21,13 +21,13 @@ Notes:
 ## Why use this over a static list?
 
 | Feature / Platform | didtheyghost.me | Static GitHub List | Scraper-only Boards |
-|---|---:|---:|---:|
-| Updates when roles are verified/closed | Yes | No | Sometimes |
-| Track application outcomes (offer / rejected / ghosted) | Yes | No | No |
-| Share and view interview experiences | Yes | No | No |
-| Filter by country, experience level, category | Yes | Limited | Limited |
-| Community Q&A under each job | Yes | No | No |
-| Shows when companies start/end hiring | Yes | No | Sometimes |
+|---|:---:|:---:|:---:|
+| Updates when roles are verified/closed | ✅ Yes | ❌ No | ⚠️ Sometimes |
+| Track application outcomes (offer / rejected / ghosted) | ✅ Yes | ❌ No | ❌ No |
+| Interview experiences & OA details | ✅ Yes | ❌ No | ❌ No |
+| Filters (country, experience level, job category) | ✅ Yes | ⚠️ Limited | ⚠️ Limited |
+| Community Q&A per role | ✅ Yes | ❌ No | ❌ No |
+| Shows when companies start/end hiring | ✅ Yes | ❌ No | ⚠️ Sometimes |
 
 Built by job applicants, for job applicants. Free. Open-source. No ads.
 
