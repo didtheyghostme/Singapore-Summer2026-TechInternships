@@ -29,7 +29,8 @@ Notes:
 | Community Q&A per role | ✅ Yes | ❌ No | ❌ No |
 | Shows when companies start/end hiring | ✅ Yes | ❌ No | ⚠️ Sometimes |
 
-Built by job applicants, for job applicants. Free. Open-source. No ads.
+**Built by job applicants, for job applicants.**<br>
+Free. Open-source. No ads.
 
 ## What makes it different?
 
