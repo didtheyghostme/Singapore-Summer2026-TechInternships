@@ -41,8 +41,7 @@ Built by job applicants, for job applicants. Free. Open-source. No ads.
 
 ## Inspired by
 
-This repo continues the great work started in kxrt’s internship repo:
-https://github.com/kxrt/Singapore-Summer2024-TechInternships
+This repo continues the great work started in [kxrt’s 2024 internship repo](https://github.com/kxrt/Singapore-Summer2024-TechInternships).
 
 ## Contributing
 
@@ -50,4 +49,3 @@ PRs are welcome for:
 - Adding new roles
 - Updating or removing roles that have closed
 - Fixing links/formatting
-
