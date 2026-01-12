@@ -4,7 +4,7 @@
 
 Find **Singapore tech internships (Summer 2026)**, with a live platform to track applications, timelines, and community updates.
 
-- Jobs: https://didtheyghost.me/jobs?utm_source=githubSGSummer2026&utm_medium=readme&utm_campaign=sg-internships-2026
+- Jobs synced from: https://didtheyghost.me/jobs?utm_source=githubSGSummer2026&utm_medium=readme&utm_campaign=sg-internships-2026
 - Main repo: https://github.com/didtheyghostme/didtheyghostme
 
 ## Jobs (Singapore · Internship · Tech · Verified)
@@ -41,7 +41,7 @@ Built by job applicants, for job applicants. Free. Open-source. No ads.
 
 ## Inspired by
 
-This continues the great work started in kxrt’s internship repo:
+This repo continues the great work started in kxrt’s internship repo:
 https://github.com/kxrt/Singapore-Summer2024-TechInternships
 
 ## Contributing
@@ -51,7 +51,3 @@ PRs are welcome for:
 - Updating or removing roles that have closed
 - Fixing links/formatting
 
-If you contribute via PR, consider also submitting the same update on the live site so it can be tracked and verified:
-https://didtheyghost.me/jobs?utm_source=githubSGSummer2026&utm_medium=contribute&utm_campaign=sg-internships-2026
-
-Contact: https://didtheyghost.me/contact?utm_source=githubSGSummer2026&utm_medium=contact&utm_campaign=sg-internships-2026
