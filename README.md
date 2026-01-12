@@ -10,8 +10,8 @@ Find **Singapore tech internships (Summer 2026)**, with a live platform to track
 ## Jobs (Singapore · Internship · Tech · Verified)
 
 <!-- JOBS_TABLE_START -->
-| Company | Role | Added | Track | Apply |
-|---|---|---:|---|---|
+| Company | Role | Track | Apply | Added |
+|---|---|---|---|---:|
 <!-- JOBS_TABLE_END -->
 
 Notes:
