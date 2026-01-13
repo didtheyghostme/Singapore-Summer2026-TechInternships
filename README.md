@@ -10,8 +10,8 @@ Find **Singapore tech internships (Summer 2026)**, with a live platform to track
 ## Jobs (Singapore · Internship · Tech · Verified)
 
 <!-- JOBS_TABLE_START -->
-| Company | Role | Track | Apply | Added |
-|---|---|---|---|:---:|
+| Company | Role | Track | Application | Added |
+|---|---|---|:---:|:---:|
 | [Videotto](https://didtheyghost.me/company/eaad4e76-bb43-4f64-b0f6-e1e9e413f9ff?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | Software Engineer/Intern - AI Video Editing | [TRACK](https://didtheyghost.me/job/74d3738d-0431-4553-b855-c0ebfda95189?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | [APPLY](https://sg.linkedin.com/jobs/view/software-engineer-intern-ai-video-editing-at-videotto-4345375820) | 14 Jan 2026 |
 | [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | [TRACK](https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | [APPLY](https://career.sea.com/position/J02089415) | 14 Jan 2026 |
 | [Codex Solutions](https://didtheyghost.me/company/cdf7fc2a-05a2-4c93-8822-97e653eb6e11?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | Software Engineer Intern | [TRACK](https://didtheyghost.me/job/e18edb28-d368-4a89-8ea8-1bf6a9730817?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | [APPLY](https://sg.linkedin.com/jobs/view/software-engineer-intern-at-codex-solutions-4330971881) | 14 Jan 2026 |
