@@ -1,22 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="44" viewBox="0 0 200 44" role="img" aria-label="Apply">
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="36" viewBox="0 0 220 36" role="img" aria-label="Apply">
   <title>Apply</title>
-  <!-- Background: Dark Grey (Gray 800) -->
-  <rect x="1" y="1" width="198" height="42" rx="10" fill="#1F2937" stroke="#111827" stroke-width="2"/>
-  
-  <!-- Content Group: Centered manually
-       Approx Width: Text "APPLY" (~48px) + Gap(8) + Icon(20) = ~76px
-       Start X = (200 - 76) / 2 = 62
-  -->
-  <g transform="translate(62, 12)"> 
-    <!-- Text: APPLY -->
-    <text x="0" y="15" fill="#F9FAFB" font-size="14" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
-      APPLY
-    </text>
-    
-    <!-- Icon: Arrow Right -->
-    <!-- Position: Text(~48) + Gap(8) = 56 -->
-    <g transform="translate(56, 0)">
-      <path d="M5 10h10m0 0-3.5-3.5M15 10l-3.5 3.5" stroke="#F9FAFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </g>
-  </g>
+  <rect x="1" y="1" width="218" height="34" rx="10" fill="#111827" stroke="#030712" stroke-width="2"/>
+  <text x="110" y="18" fill="#F9FAFB" font-size="15" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    Apply
+  </text>
 </svg>
