@@ -100,25 +100,12 @@ function parseCompanyMarkdownLink(companyCell) {
 }
 
 async function getBaseReadmeFromGit(baseRef) {
-  // Ensure origin/<baseRef> exists locally
   execSync(`git fetch origin ${baseRef}`, { stdio: "ignore" });
   return execSync(`git show origin/${baseRef}:README.md`, { encoding: "utf8" });
 }
 
 function cell(cells, idx) {
   return (cells[idx] ?? "").trim();
-}
-
-function assertNoDuplicateDbIds(rows, label) {
-  const seen = new Set();
-
-  for (const r of rows) {
-    const id = extractDbJobId(cell(r.cells, 2));
-    if (!id) continue;
-
-    if (seen.has(id)) failAtRow(r, `${label}: duplicate DB job id ${id} (same /job/<uuid> appears multiple times).`);
-    seen.add(id);
-  }
 }
 
 function assertNoDuplicateCommunityRows(rows) {
@@ -128,7 +115,6 @@ function assertNoDuplicateCommunityRows(rows) {
     const id = extractDbJobId(cell(r.cells, 2));
     if (id) continue; // only community
 
-    // Exact-duplicate line detection (simple + effective)
     const normalized = r.line.replace(/\s+/g, " ").trim();
     if (seen.has(normalized)) failAtRow(r, "Duplicate community row (exact duplicate line).");
     seen.add(normalized);
@@ -144,40 +130,67 @@ async function main() {
   const base = parseTable(baseReadme);
   const head = parseTable(headReadme);
 
-  // Tighten: duplicates are not allowed
-  assertNoDuplicateDbIds(base.rows, "Base");
-  assertNoDuplicateDbIds(head.rows, "PR");
-  assertNoDuplicateCommunityRows(head.rows);
-
-  // Tighten: all rows must be well-formed
+  // Basic shape checks on PR table
   for (const r of head.rows) {
     if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns.");
     if (!cell(r.cells, 0)) failAtRow(r, "Company cannot be empty.");
     if (!cell(r.cells, 1)) failAtRow(r, "Role cannot be empty.");
   }
 
-  const baseDbById = new Map();
-  const headDbById = new Map();
+  // Prevent exact-duplicate community rows
+  assertNoDuplicateCommunityRows(head.rows);
 
+  // Index DB rows on base (and ensure base itself has no duplicate DB ids)
+  const baseDbRowById = new Map();
   for (const r of base.rows) {
     const id = extractDbJobId(cell(r.cells, 2));
-    if (id) baseDbById.set(id, r);
-  }
-  for (const r of head.rows) {
-    const id = extractDbJobId(cell(r.cells, 2));
-    if (id) headDbById.set(id, r);
+    if (!id) continue;
+
+    if (baseDbRowById.has(id)) {
+      failAtRow(r, `Base README has duplicate DB job id ${id}. Fix base table first.`);
+    }
+
+    baseDbRowById.set(id, r);
   }
 
-  // Rule: DB rows cannot be ADDED in PR (only edited/removed)
-  for (const [id, r] of headDbById.entries()) {
-    if (!baseDbById.has(id)) {
-      failAtRow(r, `DB row added in PR is not allowed (job id ${id}). Only community rows may be added.`);
+  // Gather DB rows on PR head: id -> rows[]
+  const headDbRowsById = new Map();
+  for (const r of head.rows) {
+    const id = extractDbJobId(cell(r.cells, 2));
+    if (!id) continue;
+
+    const list = headDbRowsById.get(id) ?? [];
+    list.push(r);
+    headDbRowsById.set(id, list);
+  }
+
+  // FIRST: fail fast on any DB-row ADDITIONS / DUPLICATES in the PR
+  for (const [id, rowsForId] of headDbRowsById.entries()) {
+    if (!baseDbRowById.has(id)) {
+      failAtRow(
+        rowsForId[0],
+        `Invalid new row — only community rows may be added in PRs. Track must be "-" (no /job/<uuid> links). Detected job id: ${id}`,
+      );
+    }
+
+    if (rowsForId.length > 1) {
+      // show the 2nd occurrence — it’s most likely the “newly added” copy
+      failAtRow(
+        rowsForId[1],
+        `DB rows cannot be duplicated/added in PRs. Job id ${id} appears multiple times. If you meant to add a community row, Track must be "-" (no /job/<uuid> links).`,
+      );
     }
   }
 
-  // Rule: For DB rows that still exist, Track and Date Added cannot be edited
-  for (const [id, headRow] of headDbById.entries()) {
-    const baseRow = baseDbById.get(id);
+  // Now that we know PR has no new/duplicate DB rows, build a simple head DB map
+  const headDbRowById = new Map();
+  for (const [id, rowsForId] of headDbRowsById.entries()) {
+    headDbRowById.set(id, rowsForId[0]);
+  }
+
+  // DB row rules: existing DB rows may be edited/removed, but Track + Date Added immutable
+  for (const [id, headRow] of headDbRowById.entries()) {
+    const baseRow = baseDbRowById.get(id);
     if (!baseRow) continue;
 
     const baseTrack = cell(baseRow.cells, 2);
@@ -193,7 +206,7 @@ async function main() {
     }
   }
 
-  // Community row rules (after-state): add/edit/remove allowed, but must be valid
+  // Community row rules: add/edit/remove allowed, but must be valid
   for (const r of head.rows) {
     const track = cell(r.cells, 2);
     const isDb = extractDbJobId(track) !== null;
@@ -210,12 +223,12 @@ async function main() {
     // Track: must be exactly "-"
     if (track !== "-") failAtRow(r, `Community row Track must be "-" (exact). Found: "${track}".`);
 
-    // Company URL mandatory: must be markdown link [Name](https://...)
+    // Company URL mandatory
     const companyLink = parseCompanyMarkdownLink(company);
     if (!companyLink) failAtRow(r, `Community row Company must be a markdown link: [Name](https://...). Found: "${company}".`);
     if (!isPlainHttpUrl(companyLink.url)) failAtRow(r, `Community row Company URL must be http(s). Found: "${companyLink.url}".`);
 
-    // Application required and must be plain URL (no HTML/buttons)
+    // Application required and must be plain URL
     if (!application) failAtRow(r, "Community row Application is required (must be a URL).");
     if (!isPlainHttpUrl(application)) failAtRow(r, `Community row Application must be a plain http(s) URL. Found: "${application}".`);
     if (application.includes("<") || application.includes(">")) failAtRow(r, "Community row Application must not contain HTML. Paste a URL only.");
