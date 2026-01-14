@@ -15,6 +15,10 @@ function fail(message) {
   process.exit(1);
 }
 
+function failAtRow(row, message) {
+  fail(`Row ${row.rowNumberInBlock}: ${message}\n${row.line}`);
+}
+
 function isTableRow(line) {
   const t = line.trim();
   return t.startsWith("|") && t.endsWith("|") && t.split("|").length >= 3;
@@ -96,13 +100,39 @@ function parseCompanyMarkdownLink(companyCell) {
 }
 
 async function getBaseReadmeFromGit(baseRef) {
-  // Ensure base ref exists locally
-  execSync(`git fetch origin ${baseRef}:${baseRef}`, { stdio: "ignore" });
-  return execSync(`git show ${baseRef}:README.md`, { encoding: "utf8" });
+  // Ensure origin/<baseRef> exists locally
+  execSync(`git fetch origin ${baseRef}`, { stdio: "ignore" });
+  return execSync(`git show origin/${baseRef}:README.md`, { encoding: "utf8" });
 }
 
 function cell(cells, idx) {
   return (cells[idx] ?? "").trim();
+}
+
+function assertNoDuplicateDbIds(rows, label) {
+  const seen = new Set();
+
+  for (const r of rows) {
+    const id = extractDbJobId(cell(r.cells, 2));
+    if (!id) continue;
+
+    if (seen.has(id)) failAtRow(r, `${label}: duplicate DB job id ${id} (same /job/<uuid> appears multiple times).`);
+    seen.add(id);
+  }
+}
+
+function assertNoDuplicateCommunityRows(rows) {
+  const seen = new Set();
+
+  for (const r of rows) {
+    const id = extractDbJobId(cell(r.cells, 2));
+    if (id) continue; // only community
+
+    // Exact-duplicate line detection (simple + effective)
+    const normalized = r.line.replace(/\s+/g, " ").trim();
+    if (seen.has(normalized)) failAtRow(r, "Duplicate community row (exact duplicate line).");
+    seen.add(normalized);
+  }
 }
 
 async function main() {
@@ -114,10 +144,21 @@ async function main() {
   const base = parseTable(baseReadme);
   const head = parseTable(headReadme);
 
+  // Tighten: duplicates are not allowed
+  assertNoDuplicateDbIds(base.rows, "Base");
+  assertNoDuplicateDbIds(head.rows, "PR");
+  assertNoDuplicateCommunityRows(head.rows);
+
+  // Tighten: all rows must be well-formed
+  for (const r of head.rows) {
+    if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns.");
+    if (!cell(r.cells, 0)) failAtRow(r, "Company cannot be empty.");
+    if (!cell(r.cells, 1)) failAtRow(r, "Role cannot be empty.");
+  }
+
   const baseDbById = new Map();
   const headDbById = new Map();
 
-  // Index DB rows by job id
   for (const r of base.rows) {
     const id = extractDbJobId(cell(r.cells, 2));
     if (id) baseDbById.set(id, r);
@@ -127,10 +168,10 @@ async function main() {
     if (id) headDbById.set(id, r);
   }
 
-  // Rule: DB rows cannot be ADDED in PR
+  // Rule: DB rows cannot be ADDED in PR (only edited/removed)
   for (const [id, r] of headDbById.entries()) {
     if (!baseDbById.has(id)) {
-      fail(`DB row added in PR is not allowed (job id ${id}). Only community rows may be added.`);
+      failAtRow(r, `DB row added in PR is not allowed (job id ${id}). Only community rows may be added.`);
     }
   }
 
@@ -142,49 +183,45 @@ async function main() {
     const baseTrack = cell(baseRow.cells, 2);
     const headTrack = cell(headRow.cells, 2);
     if (baseTrack !== headTrack) {
-      fail(`DB row (job id ${id}) Track column was edited. Track edits are not allowed.`);
+      failAtRow(headRow, `DB row (job id ${id}) Track column was edited. Track edits are not allowed.`);
     }
 
     const baseDate = cell(baseRow.cells, 4);
     const headDate = cell(headRow.cells, 4);
     if (baseDate !== headDate) {
-      fail(`DB row (job id ${id}) Date Added column was edited. Date Added edits are not allowed.`);
+      failAtRow(headRow, `DB row (job id ${id}) Date Added column was edited. Date Added edits are not allowed.`);
     }
-
-
   }
 
-  // Community row rules (after-state only, because edits/removes/adds are all allowed)
+  // Community row rules (after-state): add/edit/remove allowed, but must be valid
   for (const r of head.rows) {
     const track = cell(r.cells, 2);
     const isDb = extractDbJobId(track) !== null;
     if (isDb) continue;
-
-    if (r.cells.length !== 5) fail(`Community row must have exactly 5 columns: ${r.line}`);
 
     const company = cell(r.cells, 0);
     const role = cell(r.cells, 1);
     const application = cell(r.cells, 3);
     const dateAdded = cell(r.cells, 4);
 
-    if (!company) fail(`Community row: Company cannot be empty. Row: ${r.line}`);
-    if (!role) fail(`Community row: Role cannot be empty. Row: ${r.line}`);
+    if (!company) failAtRow(r, "Community row: Company cannot be empty.");
+    if (!role) failAtRow(r, "Community row: Role cannot be empty.");
 
     // Track: must be exactly "-"
-    if (track !== "-") fail(`Community row Track must be "-" (exact). Found: "${track}". Row: ${r.line}`);
+    if (track !== "-") failAtRow(r, `Community row Track must be "-" (exact). Found: "${track}".`);
 
     // Company URL mandatory: must be markdown link [Name](https://...)
     const companyLink = parseCompanyMarkdownLink(company);
-    if (!companyLink) fail(`Community row Company must be a markdown link: [Name](https://...). Found: "${company}".`);
-    if (!isPlainHttpUrl(companyLink.url)) fail(`Community row Company URL must be http(s). Found: "${companyLink.url}".`);
+    if (!companyLink) failAtRow(r, `Community row Company must be a markdown link: [Name](https://...). Found: "${company}".`);
+    if (!isPlainHttpUrl(companyLink.url)) failAtRow(r, `Community row Company URL must be http(s). Found: "${companyLink.url}".`);
 
     // Application required and must be plain URL (no HTML/buttons)
-    if (!application) fail(`Community row Application is required (must be a URL). Row: ${r.line}`);
-    if (!isPlainHttpUrl(application)) fail(`Community row Application must be a plain http(s) URL. Found: "${application}".`);
-    if (application.includes("<") || application.includes(">")) fail(`Community row Application must not contain HTML. Paste a URL only.`);
+    if (!application) failAtRow(r, "Community row Application is required (must be a URL).");
+    if (!isPlainHttpUrl(application)) failAtRow(r, `Community row Application must be a plain http(s) URL. Found: "${application}".`);
+    if (application.includes("<") || application.includes(">")) failAtRow(r, "Community row Application must not contain HTML. Paste a URL only.");
 
     // Date Added: must be ISO
-    if (!isValidIsoDate(dateAdded)) fail(`Community row Date Added must be a real YYYY-MM-DD date. Found: "${dateAdded}".`);
+    if (!isValidIsoDate(dateAdded)) failAtRow(r, `Community row Date Added must be a real YYYY-MM-DD date. Found: "${dateAdded}".`);
   }
 
   console.log("README jobs table validation passed.");
