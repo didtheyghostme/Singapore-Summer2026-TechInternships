@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50" role="img" aria-label="Track">
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60" role="img" aria-label="Track">
   <title>Track</title>
-  <rect x="1" y="1" width="198" height="48" rx="12" fill="#6B7280" stroke="#4B5563" stroke-width="2"/>
-  <text x="100" y="25" fill="#F9FAFB" font-size="16" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect x="1" y="1" width="198" height="58" rx="14" fill="#6B7280" stroke="#4B5563" stroke-width="2"/>
+  <text x="100" y="30" fill="#F9FAFB" font-size="16" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
     Track
   </text>
 </svg>
