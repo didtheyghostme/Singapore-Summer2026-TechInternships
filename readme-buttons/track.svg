@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="36" viewBox="0 0 170 36" role="img" aria-label="Track">
+  <title>Track</title>
+  <rect x="1" y="1" width="168" height="34" rx="10" fill="#6B7280" stroke="#4B5563" stroke-width="2"/>
+  <!-- Radar / tracking icon -->
+  <path d="M20 11.2c-4.3 0-7.8 3.5-7.8 7.8S15.7 26.8 20 26.8s7.8-3.5 7.8-7.8S24.3 11.2 20 11.2Zm0 1.6c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2Z" fill="#F9FAFB"/>
+  <path d="M20 15.3a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Zm0 1.6a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2Z" fill="#F9FAFB" opacity=".95"/>
+  <path d="M20.7 18.3 24.7 14.3c.3-.3.3-.8 0-1.1s-.8-.3-1.1 0l-4 4c-.3.3-.3.8 0 1.1s.8.3 1.1 0Z" fill="#F9FAFB"/>
+  <text x="52" y="23" fill="#F9FAFB" font-size="14" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    Track
+  </text>
+</svg>

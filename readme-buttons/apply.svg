@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="36" viewBox="0 0 170 36" role="img" aria-label="Apply">
+  <title>Apply</title>
+  <rect x="1" y="1" width="168" height="34" rx="10" fill="#2563EB" stroke="#1D4ED8" stroke-width="2"/>
+  <!-- Arrow-out icon (apply/launch) -->
+  <path d="M14 14.2a.8.8 0 0 1 .8-.8h5.3a.8.8 0 1 1 0 1.6h-3.4l8.1 8.1a.8.8 0 0 1-1.1 1.1L15.6 16v3.4a.8.8 0 1 1-1.6 0v-5.2Z" fill="#F9FAFB"/>
+  <path d="M14.8 22.6h7.6c.4 0 .8.4.8.8v1.8c0 .4-.4.8-.8.8h-7.6c-.4 0-.8-.4-.8-.8v-1.8c0-.4.4-.8.8-.8Z" fill="#F9FAFB" opacity=".0"/>
+  <text x="52" y="23" fill="#F9FAFB" font-size="14" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    Apply
+  </text>
+</svg>
