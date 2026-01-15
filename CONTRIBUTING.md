@@ -89,17 +89,25 @@ When adding or editing a community row, follow these rules:
 
 ## Example
 
-Here's a complete example template you can copy and paste (replace the placeholders with actual values):
+Here's an example row you can copy and paste (replace the placeholders with actual values):
 
 ```markdown
 | [COMPANY_NAME](COMPANY_URL) | JOB_TITLE | - | JOB_APPLICATION_URL | YYYY-MM-DD |
 ```
 
-Example with real values:
+**Example of how the README should look after you add your row:**
 
 ```markdown
+| Company | Role | Track | Application | Date Added |
+|---|---|:---:|:---:|:---:|
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 ```
+
+**When rendered, it will look like:**
+
+| Company | Role | Track | Application | Date Added |
+|---|---|:---:|:---:|:---:|
+| [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 
 ## Common Mistakes to Avoid
 
