@@ -220,7 +220,8 @@ This repo continues the great work started in [kxrt’s 2024 internship repo](ht
 
 PRs are welcome for:
 - Adding new roles
-- Updating or removing roles that have closed
-- Fixing links/formatting
+- Removing roles that have closed
+- Fixing inaccurate information, links, or formatting
+
 
 Please read **[CONTRIBUTING.md](CONTRIBUTING.md)** before submitting a pull request.
