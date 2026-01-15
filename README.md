@@ -222,3 +222,5 @@ PRs are welcome for:
 - Adding new roles
 - Updating or removing roles that have closed
 - Fixing links/formatting
+
+Please read **[CONTRIBUTING.md](CONTRIBUTING.md)** before submitting a pull request.
