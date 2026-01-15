@@ -20,7 +20,7 @@ Edit **only** the table between these markers in `README.md`:
 
 ## Where to Add New Entries
 
-Add new entries **at the top** of the table (right after the separator row), so the most recent additions appear first. The list is sorted by date, with newest entries at the top.
+Add new entries **at the top** of the table (right after the separator row `|---|---|:---:|:---:|:---:|` shown in the Table Structure section below), so the most recent additions appear first. The list is sorted by date, with newest entries at the top.
 
 ## Table Structure
 
@@ -35,12 +35,24 @@ The table header must remain exactly:
 
 There are two types of rows in the table:
 
-### 1. Database-Managed Rows (DO NOT EDIT)
+### 1. Database-Managed Rows (LIMITED EDITING)
 
-Rows with a **Track** column containing a link (like `<a href="https://didtheyghost.me/job/...">`) are managed by didtheyghost.me. These rows:
-- ❌ Cannot be added via pull requests
-- ❌ Cannot be edited (except Company and Role in some cases)
-- ✅ Will be automatically updated when roles are verified/closed
+Rows with a **Track** column containing a link (like `<a href="https://didtheyghost.me/job/...">`) are managed by didtheyghost.me. These rows have specific editing rules:
+
+**Allowed to edit:**
+- ✅ **Company** column
+- ✅ **Role** column
+- ✅ **Application** column
+
+**NOT allowed to edit:**
+- ❌ **Track** column (must remain unchanged - contains `/job/<uuid>` link)
+- ❌ **Date Added** column (must remain unchanged)
+
+**Allowed to remove:**
+- ✅ You can delete entire rows via pull requests (to signal that a role is closed/outdated). The admin will update the database after merging.
+
+**NOT allowed to add:**
+- ❌ Pull requests must **not** add new rows with `/job/<uuid>` links. New roles must be added as **community rows** (Track must be `-`).
 
 ### 2. Community Rows (YOU CAN ADD/EDIT/REMOVE)
 
@@ -50,6 +62,7 @@ A row is a **community row** if the **Track** column is exactly `-`.
 
 When adding or editing a community row, follow these rules:
 
+<a id="company-format"></a>
 ### Required Format
 
 | Column | Format | Example |
@@ -62,7 +75,7 @@ When adding or editing a community row, follow these rules:
 
 ### Important Notes
 
-- **Company**: Must be a valid markdown link with `https://` or `http://`
+- **Company**: Must be a [valid markdown link](#company-format)
 - **Application**: Must be a plain URL (no HTML tags, no buttons, no markdown)
 - **Date Added**: Use today's date in `YYYY-MM-DD` format (e.g., `2026-01-14`)
 - **Track**: Must be exactly `-` (a single dash)
@@ -83,6 +96,7 @@ Here's a complete example you can copy and paste:
 ❌ **Don't** change the header row or column order  
 ❌ **Don't** add duplicate entries (check the list first)  
 ❌ **Don't** add non-tech roles or roles outside Singapore  
+❌ **Don't** edit Track or Date Added columns for database-managed rows  
 
 ✅ **Do** use plain URLs in the Application column  
 ✅ **Do** add entries at the top of the table  
