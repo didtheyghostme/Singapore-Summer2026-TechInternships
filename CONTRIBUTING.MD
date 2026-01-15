@@ -1,13 +1,15 @@
 # Contributing
 
-Thank you for helping keep this list accurate and up-to-date! 🎉
+Thank you for helping keep this list accurate and up-to-date!
 
 ## Before You Start
 
 **Requirements:**
-- ✅ The internship must be for a **technology-focused role** in **Singapore**
-- ✅ The job should **not already exist** in the internship list (check for duplicates first)
-- ✅ Only **community rows** can be added via pull requests (see below)
+- ✅ The role must be for a **technology-focused internship** in **Singapore**
+- ✅ The role must **not already exist** in the internship list (check for duplicates first)
+
+> [!IMPORTANT]
+> For information about adding, editing, or removing rows, see [Understanding Row Types](#understanding-row-types) below.
 
 ## Where to Edit
 
@@ -16,11 +18,17 @@ Edit **only** the table between these markers in `README.md`:
 - `<!-- JOBS_TABLE_START -->`
 - `<!-- JOBS_TABLE_END -->`
 
-**Important:** Do not change the header row or column order.
+> [!IMPORTANT]
+> Do not change the header row or column order.
 
 ## Where to Add New Entries
 
-Add new entries **at the top** of the table (right after the separator row `|---|---|:---:|:---:|:---:|` shown in the Table Structure section below), so the most recent additions appear first. The list is sorted by date, with newest entries at the top.
+Add new entries **at the top of the table**, immediately after the separator row:
+
+`|---|---|:---:|:---:|:---:|`
+
+This ensures the most recent additions appear first.
+
 
 ## Table Structure
 
@@ -37,9 +45,9 @@ There are two types of rows in the table:
 
 ### 1. Database-Managed Rows (LIMITED EDITING)
 
-Rows with a **Track** column containing a link (like `<a href="https://didtheyghost.me/job/...">`) are managed by didtheyghost.me. These rows have specific editing rules:
+Rows where the **Track** column contains a link (like `<a href="https://didtheyghost.me/job/<uuid>">`) are managed by  [didtheyghost.me](https://didtheyghost.me?utm_source=github&utm_medium=readmecontributing). These rows have specific editing rules:
 
-**Allowed to edit:**
+**Allowed to edit if information is inaccurate:**
 - ✅ **Company** column
 - ✅ **Role** column
 - ✅ **Application** column
@@ -49,7 +57,7 @@ Rows with a **Track** column containing a link (like `<a href="https://didtheygh
 - ❌ **Date Added** column (must remain unchanged)
 
 **Allowed to remove:**
-- ✅ You can delete entire rows via pull requests (to signal that a role is closed/outdated). The admin will update the database after merging.
+- ✅ You can delete entire rows via pull requests (to signal that a role is closed/outdated). The database will be updated after the PR is merged.
 
 **NOT allowed to add:**
 - ❌ Pull requests must **not** add new rows with `/job/<uuid>` links. New roles must be added as **community rows** (Track must be `-`).
@@ -62,7 +70,6 @@ A row is a **community row** if the **Track** column is exactly `-`.
 
 When adding or editing a community row, follow these rules:
 
-<a id="company-format"></a>
 ### Required Format
 
 | Column | Format | Example |
@@ -75,14 +82,20 @@ When adding or editing a community row, follow these rules:
 
 ### Important Notes
 
-- **Company**: Must be a [valid markdown link](#company-format)
+- **Company**: Must be a valid markdown link
 - **Application**: Must be a plain URL (no HTML tags, no buttons, no markdown)
 - **Date Added**: Use today's date in `YYYY-MM-DD` format (e.g., `2026-01-14`)
 - **Track**: Must be exactly `-` (a single dash)
 
 ## Example
 
-Here's a complete example you can copy and paste:
+Here's a complete example template you can copy and paste (replace the placeholders with actual values):
+
+```markdown
+| [COMPANY_NAME](COMPANY_URL) | JOB_TITLE | - | JOB_APPLICATION_URL | YYYY-MM-DD |
+```
+
+Example with real values:
 
 ```markdown
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
@@ -110,4 +123,4 @@ If you're unsure about anything, feel free to:
 - Open an issue to ask questions
 - Review the validation errors if your PR fails
 
-Thanks for contributing! 🙏
+Thanks for contributing!
