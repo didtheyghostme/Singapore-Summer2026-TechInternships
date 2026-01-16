@@ -1,7 +1,7 @@
 # Contributing
 
-Thank you for helping keep this list accurate and up-to-date!  
-Contributions are welcome, even if this is your first pull request.
+Thank you for helping keep this list accurate and up-to-date!
+Contributions are welcome, even if this is your first pull request (PR).
 
 ## Before You Start
 
@@ -33,10 +33,24 @@ Copy and paste this row and replace the placeholders:
 
 It's expected that newly added rows look plain and do **not** contain buttons.
 
-<details>
-<summary>What will it look like after merge?</summary>
+### Where to add it
 
-**How the README will look in your pull request:**
+Edit **only** the table between these markers in `README.md`:
+
+* `<!-- JOBS_TABLE_START -->`
+* `<!-- JOBS_TABLE_END -->`
+
+Add your row **at the top of the table**, immediately after this separator row:
+
+```
+|---|---|:---:|:---:|:---:|
+```
+
+Do **not** change the header row or column order.
+
+### Example
+
+Here's what a correctly formatted row looks like in your PR:
 
 ```markdown
 | Company | Role | Track | Application | Date Added |
@@ -44,13 +58,16 @@ It's expected that newly added rows look plain and do **not** contain buttons.
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 ```
 
-**Rendered in your PR:**
+**Rendered:**
 
 | Company                      | Role                     | Track |                       Application                      | Date Added |
 | ---------------------------- | ------------------------ | :---: | :----------------------------------------------------: | :--------: |
 | [OpenAI](https://openai.com) | Software Engineer Intern |   -   | [https://example.com/apply](https://example.com/apply) | 2026-01-14 |
 
-**After merge (next resync):**
+<details>
+<summary>What happens after merge?</summary>
+
+After merge, a resync will automatically convert your row to include buttons:
 
 | Company                      | Role                     | Track |                                               Application                                              |  Date Added |
 | ---------------------------- | ------------------------ | :---: | :----------------------------------------------------------------------------------------------------: | :---------: |
@@ -58,46 +75,18 @@ It's expected that newly added rows look plain and do **not** contain buttons.
 
 </details>
 
-## Where to Edit
-
-Edit **only** the table between these markers in `README.md`:
-
-* `<!-- JOBS_TABLE_START -->`
-* `<!-- JOBS_TABLE_END -->`
-
-Do **not** change the header row or column order.
-
-## Where to Add New Entries
-
-Always add new rows **at the top of the table**, immediately after this separator row:
-
-```
-|---|---|:---:|:---:|:---:|
-```
-
-This keeps the most recent roles visible first.
-
-## Table Structure
-
-The table header must remain **exactly** as shown below:
-
-```markdown
-| Company | Role | Track | Application | Date Added |
-|---|---|:---:|:---:|:---:|
-```
-
 ## Understanding Row Types (Advanced)
 
 There are **two types of rows** in the table.
 
-### 1) Community Rows
+### Community Rows
 
 A row is a **community row** if the **Track** column is exactly `-`.
 
 **Community rows:**
 
-* ✅ Can be added, edited, or removed via pull requests
-* ✅ Are the only type of row you should add in a pull request
+* ✅ Can be added, edited, or removed via PRs
+* ✅ Are the only type of row you should add in a PR
 
 Community rows look like this:
 
@@ -105,7 +94,7 @@ Community rows look like this:
 |---|---|:---:|:---:|:---:|
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 
-### 2) Database-Managed Rows
+### Database-Managed Rows
 
 Rows where the **Track** column contains a **Track button link**
 (e.g. a URL with `/job/<uuid>`) are managed by [didtheyghost.me](https://didtheyghost.me?utm_source=github&utm_medium=readmecontributing).
@@ -126,7 +115,7 @@ Database-managed rows look like this:
 
 ## PR Checklist (Self-Review)
 
-> This checklist is for self-review only — you do **not** need to include it in your pull request.
+> This checklist is for self-review only — you do **not** need to include it in your PR.
 
 ### If you are adding a new role
 
@@ -143,7 +132,7 @@ Database-managed rows look like this:
 
 ### If you are removing a role
 
-* [ ] I removed the entire row (not a partial edit)
+* [ ] I removed the entire row
 
 ## Need Help?
 
