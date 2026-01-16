@@ -47,6 +47,21 @@ There are two types of rows in the table:
 
 Rows where the **Track** column contains a link (like `<a href="https://didtheyghost.me/job/<uuid>">`) are managed by  [didtheyghost.me](https://didtheyghost.me?utm_source=github&utm_medium=readmecontributing). These rows have specific editing rules:
 
+> [!IMPORTANT]
+> The example below is **reference only**. Pull requests must **not** add new rows that contain `/job/<uuid>` links in the **Track** column.
+
+**Example (database-managed row):**
+
+```markdown
+| [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | <a href="https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech"><img alt="Track" src="readme-buttons/track.svg" width="160" /></a> | <a href="https://career.sea.com/position/J02089415"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
+```
+
+**When rendered, it will look like:**
+
+| Company | Role | Track | Application | Date Added |
+|---|---|:---:|:---:|:---:|
+| [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | <a href="https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech"><img alt="Track" src="readme-buttons/track.svg" width="160" /></a> | <a href="https://career.sea.com/position/J02089415"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
+
 **Allowed to edit if information is inaccurate:**
 - ✅ **Company** column
 - ✅ **Role** column
@@ -66,6 +81,8 @@ Rows where the **Track** column contains a link (like `<a href="https://didtheyg
 
 A row is a **community row** if the **Track** column is exactly `-`.
 
+For a PR-safe row template and rendered preview, see [Example](#example) below.
+
 ## Community Row Rules
 
 When adding or editing a community row, follow these rules:
@@ -84,6 +101,7 @@ When adding or editing a community row, follow these rules:
 
 - **Company**: Must be a valid markdown link
 - **Application**: Must be a plain URL (no HTML tags, no buttons, no markdown)
+- **After merge**: On the next resync, automation will reformat the Application URL (e.g., into an Apply button). In PRs, still paste the plain URL only.
 - **Date Added**: Use today's date in `YYYY-MM-DD` format (e.g., `2026-01-14`)
 - **Track**: Must be exactly `-` (a single dash)
 
