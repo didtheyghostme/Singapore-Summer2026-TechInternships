@@ -1,119 +1,42 @@
 # Contributing
 
-Thank you for helping keep this list accurate and up-to-date!
+Thank you for helping keep this list accurate and up-to-date!  
+Contributions are welcome, even if this is your first pull request.
 
 ## Before You Start
 
-**Requirements:**
-- ✅ The role must be for a **technology-focused internship** in **Singapore**
-- ✅ The role must **not already exist** in the internship list (check for duplicates first)
+Please make sure the role you're contributing meets **all** of these requirements:
 
-> [!IMPORTANT]
-> For information about adding, editing, or removing rows, see [Understanding Row Types](#understanding-row-types) below.
+- ✅ A **technology-focused internship**
+- ✅ Located in **Singapore**
+- ✅ **Not already listed** (check for duplicates first)
 
-## Where to Edit
+## Adding a New Role
 
-Edit **only** the table between these markers in `README.md`:
+If you're contributing a new internship, follow this section.
 
-- `<!-- JOBS_TABLE_START -->`
-- `<!-- JOBS_TABLE_END -->`
+### What your row should look like
 
-> [!IMPORTANT]
-> Do not change the header row or column order.
-
-## Where to Add New Entries
-
-Add new entries **at the top of the table**, immediately after the separator row:
-
-`|---|---|:---:|:---:|:---:|`
-
-This ensures the most recent additions appear first.
-
-
-## Table Structure
-
-The table header must remain exactly:
-
-```
-| Company | Role | Track | Application | Date Added |
-|---|---|:---:|:---:|:---:|
-```
-
-## Understanding Row Types
-
-There are two types of rows in the table:
-
-### 1. Database-Managed Rows (LIMITED EDITING)
-
-Rows where the **Track** column contains a link (like `<a href="https://didtheyghost.me/job/<uuid>">`) are managed by  [didtheyghost.me](https://didtheyghost.me?utm_source=github&utm_medium=readmecontributing). These rows have specific editing rules:
-
-> [!IMPORTANT]
-> The example below is **reference only**. Pull requests must **not** add new rows that contain `/job/<uuid>` links in the **Track** column.
-
-**Example (database-managed row):**
-
-```markdown
-| [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | <a href="https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech"><img alt="Track" src="readme-buttons/track.svg" width="160" /></a> | <a href="https://career.sea.com/position/J02089415"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
-```
-
-**When rendered, it will look like:**
-
-| Company | Role | Track | Application | Date Added |
-|---|---|:---:|:---:|:---:|
-| [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | <a href="https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech"><img alt="Track" src="readme-buttons/track.svg" width="160" /></a> | <a href="https://career.sea.com/position/J02089415"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
-
-**Allowed to edit if information is inaccurate:**
-- ✅ **Company** column
-- ✅ **Role** column
-- ✅ **Application** column
-
-**NOT allowed to edit:**
-- ❌ **Track** column (must remain unchanged - contains `/job/<uuid>` link)
-- ❌ **Date Added** column (must remain unchanged)
-
-**Allowed to remove:**
-- ✅ You can delete entire rows via pull requests (to signal that a role is closed/outdated). The database will be updated after the PR is merged.
-
-**NOT allowed to add:**
-- ❌ Pull requests must **not** add new rows with `/job/<uuid>` links. New roles must be added as **community rows** (Track must be `-`).
-
-### 2. Community Rows (YOU CAN ADD/EDIT/REMOVE)
-
-A row is a **community row** if the **Track** column is exactly `-`.
-
-For a PR-safe row template and rendered preview, see [Example](#example) below.
-
-## Community Row Rules
-
-When adding or editing a community row, follow these rules:
-
-### Required Format
-
-| Column | Format | Example |
-|--------|--------|---------|
-| **Company** | Markdown link: `[Company Name](https://company.com)` | `[OpenAI](https://openai.com)` |
-| **Role** | Free text (job title) | `Software Engineer Intern` |
-| **Track** | Must be exactly `-` | `-` |
-| **Application** | Plain `http(s)` URL (no HTML/buttons) | `https://example.com/apply` |
-| **Date Added** | `YYYY-MM-DD` format (real date) | `2026-01-14` |
-
-### Important Notes
-
-- **Company**: Must be a valid markdown link
-- **Application**: Must be a plain URL (no HTML tags, no buttons, no markdown)
-- **After merge**: On the next resync, automation will reformat the Application URL (e.g., into an Apply button). In PRs, still paste the plain URL only.
-- **Date Added**: Use today's date in `YYYY-MM-DD` format (e.g., `2026-01-14`)
-- **Track**: Must be exactly `-` (a single dash)
-
-## Example
-
-Here's an example row you can copy and paste (replace the placeholders with actual values):
+Copy and paste this row and replace the placeholders:
 
 ```markdown
 | [COMPANY_NAME](COMPANY_URL) | JOB_TITLE | - | JOB_APPLICATION_URL | YYYY-MM-DD |
 ```
 
-**Example of how the README should look after you add your row:**
+**Notes:**
+
+* **Company** must be a markdown link
+  Example: `[OpenAI](https://openai.com)`
+* **Track** must be exactly `-`
+* **Application** must be a **plain URL** (no HTML, no buttons, no markdown)
+* **Date Added** must be today's date in `YYYY-MM-DD` format
+
+It's expected that newly added rows look plain and do **not** contain buttons.
+
+<details>
+<summary>What will it look like after merge?</summary>
+
+**How the README will look in your pull request:**
 
 ```markdown
 | Company | Role | Track | Application | Date Added |
@@ -121,32 +44,113 @@ Here's an example row you can copy and paste (replace the placeholders with actu
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 ```
 
-**When rendered, it will look like:**
+**Rendered in your PR:**
+
+| Company                      | Role                     | Track |                       Application                      | Date Added |
+| ---------------------------- | ------------------------ | :---: | :----------------------------------------------------: | :--------: |
+| [OpenAI](https://openai.com) | Software Engineer Intern |   -   | [https://example.com/apply](https://example.com/apply) | 2026-01-14 |
+
+**After merge (next resync):**
+
+| Company                      | Role                     | Track |                                               Application                                              |  Date Added |
+| ---------------------------- | ------------------------ | :---: | :----------------------------------------------------------------------------------------------------: | :---------: |
+| [OpenAI](https://openai.com) | Software Engineer Intern |   -   | <a href="https://example.com/apply"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
+
+</details>
+
+## Where to Edit
+
+Edit **only** the table between these markers in `README.md`:
+
+* `<!-- JOBS_TABLE_START -->`
+* `<!-- JOBS_TABLE_END -->`
+
+Do **not** change the header row or column order.
+
+## Where to Add New Entries
+
+Always add new rows **at the top of the table**, immediately after this separator row:
+
+```
+|---|---|:---:|:---:|:---:|
+```
+
+This keeps the most recent roles visible first.
+
+## Table Structure
+
+The table header must remain **exactly** as shown below:
+
+```markdown
+| Company | Role | Track | Application | Date Added |
+|---|---|:---:|:---:|:---:|
+```
+
+## Understanding Row Types (Advanced)
+
+There are **two types of rows** in the table.
+
+### 1) Community Rows
+
+A row is a **community row** if the **Track** column is exactly `-`.
+
+**Community rows:**
+
+* ✅ Can be added, edited, or removed via pull requests
+* ✅ Are the only type of row you should add in a pull request
+
+Community rows look like this:
 
 | Company | Role | Track | Application | Date Added |
 |---|---|:---:|:---:|:---:|
 | [OpenAI](https://openai.com) | Software Engineer Intern | - | https://example.com/apply | 2026-01-14 |
 
-## Common Mistakes to Avoid
+### 2) Database-Managed Rows
 
-❌ **Don't** add HTML tags to the Application column  
-❌ **Don't** use markdown links in the Application column  
-❌ **Don't** add rows with Track links (those are database-managed)  
-❌ **Don't** change the header row or column order  
-❌ **Don't** add duplicate entries (check the list first)  
-❌ **Don't** add non-tech roles or roles outside Singapore  
-❌ **Don't** edit Track or Date Added columns for database-managed rows  
+Rows where the **Track** column contains a **Track button link**
+(e.g. a URL with `/job/<uuid>`) are managed by [didtheyghost.me](https://didtheyghost.me?utm_source=github&utm_medium=readmecontributing).
 
-✅ **Do** use plain URLs in the Application column  
-✅ **Do** add entries at the top of the table  
-✅ **Do** use the exact date format `YYYY-MM-DD`  
-✅ **Do** verify the role is tech-focused and in Singapore  
+**Rules for database-managed rows:**
+
+* ✅ You may edit **Company**, **Role**, or **Application** if information is inaccurate
+* ✅ When editing, keep the button HTML intact; only update the URL/text
+* ❌ Do **not** edit **Track** or **Date Added**
+* ✅ You may remove the entire row if the role is closed or outdated; the database will be updated after merge
+
+Database-managed rows look like this:
+
+| Company                                                                                                                                     | Role                                  |                                                                                                     Track                                                                                                     |                                                       Application                                                      |  Date Added |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :---------: |
+| [Sea](https://didtheyghost.me/company/87deba26-2f77-44c5-a566-142fe2798afb?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech) | AI Ignite Internship Programme (AIIP) | <a href="https://didtheyghost.me/job/d5d44b14-651f-4808-9e38-eeb7390b5490?utm_source=github&utm_medium=readme&utm_campaign=sg-intern-tech"><img alt="Track" src="readme-buttons/track.svg" width="160" /></a> | <a href="https://career.sea.com/position/J02089415"><img alt="Apply" src="readme-buttons/apply.svg" width="160" /></a> | 14 Jan 2026 |
+
+
+## PR Checklist (Self-Review)
+
+> This checklist is for self-review only — you do **not** need to include it in your pull request.
+
+### If you are adding a new role
+
+* [ ] I added the row at the **top of the table**
+* [ ] Company is a **markdown link**
+* [ ] Track is exactly `-`
+* [ ] Application is a **plain URL**
+* [ ] Date Added is in `YYYY-MM-DD`
+* [ ] The role is tech-focused and in Singapore
+
+### If you are editing an existing role
+
+* [ ] I did **not** edit the **Track** or **Date Added** columns
+
+### If you are removing a role
+
+* [ ] I removed the entire row (not a partial edit)
 
 ## Need Help?
 
-If you're unsure about anything, feel free to:
-- Check existing community rows for examples
-- Open an issue to ask questions
-- Review the validation errors if your PR fails
+If you're unsure about anything:
 
-Thanks for contributing!
+* Check existing community rows for examples
+* Open an issue to ask a question
+* Review any validation errors if your PR fails
+
+Thanks again for contributing!
