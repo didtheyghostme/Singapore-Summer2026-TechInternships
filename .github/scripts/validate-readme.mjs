@@ -21,15 +21,36 @@ function failAtRow(row, message) {
 
 function isTableRow(line) {
   const t = line.trim();
-  return t.startsWith("|") && t.endsWith("|") && t.split("|").length >= 3;
+  // don’t use t.split("|") (breaks on \|)
+  return t.startsWith("|") && t.endsWith("|") && t.length >= 2;
+}
+
+function isEscapedPipe(s, pipeIndex) {
+  let backslashes = 0;
+  for (let i = pipeIndex - 1; i >= 0 && s[i] === "\\"; i--) backslashes++;
+  return backslashes % 2 === 1; // odd => \|
 }
 
 function splitCells(line) {
-  return line
-    .trim()
-    .slice(1, -1)
-    .split("|")
-    .map((c) => c.trim());
+  const inner = line.trim().slice(1, -1); // remove the outer pipes
+
+  const cells = [];
+  let current = "";
+
+  for (let i = 0; i < inner.length; i++) {
+    const ch = inner[i] ?? "";
+
+    if (ch === "|" && !isEscapedPipe(inner, i)) {
+      cells.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += ch;
+  }
+
+  cells.push(current.trim());
+  return cells;
 }
 
 function isSeparatorRow(cells) {
@@ -132,7 +153,7 @@ async function main() {
 
   // Basic shape checks on PR table
   for (const r of head.rows) {
-    if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns.");
+    if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns. (If you used a literal | in a cell, escape it as \\|.)");
     if (!cell(r.cells, 0)) failAtRow(r, "Company cannot be empty.");
     if (!cell(r.cells, 1)) failAtRow(r, "Role cannot be empty.");
   }
@@ -227,11 +248,13 @@ async function main() {
     const companyLink = parseCompanyMarkdownLink(company);
     if (!companyLink) failAtRow(r, `Community row Company must be a markdown link: [Name](https://...). Found: "${company}".`);
     if (!isPlainHttpUrl(companyLink.url)) failAtRow(r, `Community row Company URL must be http(s). Found: "${companyLink.url}".`);
+    if (companyLink.url.includes("\\|")) failAtRow(r, 'Community row Company URL must not contain "\\|". Use "%7C" in URLs.');
 
     // Application required and must be plain URL
     if (!application) failAtRow(r, "Community row Application is required (must be a URL).");
     if (!isPlainHttpUrl(application)) failAtRow(r, `Community row Application must be a plain http(s) URL. Found: "${application}".`);
     if (application.includes("<") || application.includes(">")) failAtRow(r, "Community row Application must not contain HTML. Paste a URL only.");
+    if (application.includes("\\|")) failAtRow(r, 'Community row Application URL must not contain "\\|". Use "%7C" in URLs.');
 
     // Date Added: must be ISO
     if (!isValidIsoDate(dateAdded)) failAtRow(r, `Community row Date Added must be a real YYYY-MM-DD date. Found: "${dateAdded}".`);
