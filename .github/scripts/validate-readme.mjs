@@ -26,9 +26,10 @@ function isTableRow(line) {
 }
 
 function isEscapedPipe(s, pipeIndex) {
+  // A pipe is escaped when it has an odd number of backslashes immediately before it.
   let backslashes = 0;
   for (let i = pipeIndex - 1; i >= 0 && s[i] === "\\"; i--) backslashes++;
-  return backslashes % 2 === 1; // odd => \|
+  return backslashes % 2 === 1; // odd number means the pipe is escaped: \|
 }
 
 function splitCells(line) {
@@ -153,7 +154,7 @@ async function main() {
 
   // Basic shape checks on PR table
   for (const r of head.rows) {
-    if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns. (If you used a literal | in a cell, escape it as \\|.)");
+    if (r.cells.length !== 5) failAtRow(r, "Row must have exactly 5 columns. 'If you used a pipe `|` inside a cell, use `\\|` for text, and `%7C` inside URLs.'");    
     if (!cell(r.cells, 0)) failAtRow(r, "Company cannot be empty.");
     if (!cell(r.cells, 1)) failAtRow(r, "Role cannot be empty.");
   }
@@ -248,13 +249,13 @@ async function main() {
     const companyLink = parseCompanyMarkdownLink(company);
     if (!companyLink) failAtRow(r, `Community row Company must be a markdown link: [Name](https://...). Found: "${company}".`);
     if (!isPlainHttpUrl(companyLink.url)) failAtRow(r, `Community row Company URL must be http(s). Found: "${companyLink.url}".`);
-    if (companyLink.url.includes("\\|")) failAtRow(r, 'Community row Company URL must not contain "\\|". Use "%7C" in URLs.');
+    if (companyLink.url.includes("|")) failAtRow(r, 'Community row Company URL must not contain `|` (don’t use `\\|` in URLs). Use `%7C` instead.');
 
     // Application required and must be plain URL
     if (!application) failAtRow(r, "Community row Application is required (must be a URL).");
     if (!isPlainHttpUrl(application)) failAtRow(r, `Community row Application must be a plain http(s) URL. Found: "${application}".`);
     if (application.includes("<") || application.includes(">")) failAtRow(r, "Community row Application must not contain HTML. Paste a URL only.");
-    if (application.includes("\\|")) failAtRow(r, 'Community row Application URL must not contain "\\|". Use "%7C" in URLs.');
+    if (application.includes("|")) failAtRow(r, 'Community row Application URL must not contain `|` (don’t use `\\|` in URLs). Use `%7C` instead.');
 
     // Date Added: must be ISO
     if (!isValidIsoDate(dateAdded)) failAtRow(r, `Community row Date Added must be a real YYYY-MM-DD date. Found: "${dateAdded}".`);
