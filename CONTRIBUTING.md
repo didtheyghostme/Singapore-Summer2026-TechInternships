@@ -142,7 +142,7 @@ Example row (database-managed):
 If you're unsure about anything:
 
 * Check existing community rows for examples
-* Open an issue to ask a question
+* [Open an issue](https://github.com/didtheyghostme/Singapore-Summer2026-TechInternships/issues) to ask a question
 * Review any validation errors if your pull request fails
 
 Thanks again for contributing!
